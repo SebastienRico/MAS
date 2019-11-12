@@ -1,13 +1,13 @@
 import null as null
 
-class Constrainte:
+class Constraint:
 
     variable_id = null
     second_variable_id = null
-    constrainte_type = null
+    constraint_type = null
     operator = null
     deviation = null
-    constrainte_weight = null
+    constraint_weight = null
 
     def __init__(self):
         """Empty constructor"""
