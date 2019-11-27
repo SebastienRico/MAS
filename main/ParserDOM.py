@@ -3,12 +3,11 @@ import null
 
 from main.Domain import Domain
 
+
 class ParserDOM:
 
-    def __init__(self):
-        """constructeur vide"""
-
-    def parse_dom_file(self, dom_file):
+    @staticmethod
+    def parse_dom_file(dom_file):
         dom_content = dom_file.read()
         content_splited = dom_content.split("\n")
         domain_list = []
@@ -20,3 +19,4 @@ class ParserDOM:
                 domain.cadinality = line_splited[1]
                 domain.values_list = line_splited[2:]
                 domain_list.insert(len(domain_list), domain)
+        return domain_list

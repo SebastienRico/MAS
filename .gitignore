@@ -105,3 +105,6 @@ venv.bak/
 
 #Itelligy IDEA
 .idea/
+
+#Configuration
+config.xml

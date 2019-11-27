@@ -3,12 +3,11 @@ import null
 
 from main.Constraint import Constraint
 
+
 class ParserCTR:
 
-    def __init__(self):
-        """constructeur vide"""
-
-    def parse_ctr_file(self, ctr_file):
+    @staticmethod
+    def parse_ctr_file(ctr_file):
         ctr_content = ctr_file.read()
         content_splited = ctr_content.split("\n")
         constraint_list = []
@@ -24,3 +23,4 @@ class ParserCTR:
                 if len(line_splited) > 5:
                     constraint.constrainte_weight = line_splited[5]
                 constraint_list.insert(len(constraint_list), constraint)
+        return constraint_list

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <folders>
+        <PathToFullRFLAP name="C:\Users\Céline\Documents\M2\MAS\"/>
+        <ProblemPath name="CELAR"/>
+        <SceneNumber name="01"/>
+    </folders>
+</config>

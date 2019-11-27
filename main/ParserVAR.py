@@ -3,12 +3,11 @@ import null
 
 from main.Variable import Variable
 
+
 class ParserVAR:
 
-    def __init__(self):
-        """constructeur vide"""
-
-    def parse_var_file(self, var_file):
+    @staticmethod
+    def parse_var_file(var_file):
         var_content = var_file.read()
         content_splited = var_content.split("\n")
         variable_list = []
@@ -23,4 +22,4 @@ class ParserVAR:
                 elif len(line_splited) == 4:
                     variable.modif_cost = line_splited[3]
                 variable_list.insert(len(variable_list), variable)
-
+        return variable_list
