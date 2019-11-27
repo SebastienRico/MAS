@@ -7,12 +7,12 @@ from main.ProblemXMLFileController import ProblemXMLFileController
 
 
 def get_config():
-    global PROBLEM_FOLDER
-    PROBLEM_FOLDER = ConfigController.get_problem_folder()
-    global SCENE_NUMBER
-    SCENE_NUMBER = ConfigController.get_scene_number()
     global PATH_TO_FULLRFLAP
-    PATH_TO_FULLRFLAP = ConfigController.get_path()
+    PATH_TO_FULLRFLAP = ConfigController.get_problem_folder()
+    global PROBLEM_FOLDER
+    PROBLEM_FOLDER = ConfigController.get_scene_number()
+    global SCENE_NUMBER
+    SCENE_NUMBER = ConfigController.get_path()
 
 
 def open_files_ctr():
@@ -37,7 +37,7 @@ def open_files_var():
 
 
 def create_XML_file():
-    ProblemXMLFileController.create_file()
+    ProblemXMLFileController.create_file(PROBLEM_FOLDER + "_scen" + SCENE_NUMBER, DOMAIN_LIST)
 
 
 def main():
