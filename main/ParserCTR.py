@@ -17,10 +17,10 @@ class ParserCTR:
                 constraint = Constraint()
                 constraint.variable_id = line_splited[0]
                 constraint.second_variable_id = line_splited[1]
-                constraint.constrainte_type = line_splited[2]
+                constraint.constraint_type = line_splited[2]
                 constraint.operator = line_splited[3]
                 constraint.deviation = line_splited[4]
                 if len(line_splited) > 5:
-                    constraint.constrainte_weight = line_splited[5]
+                    constraint.constraint_weight = line_splited[5]
                 constraint_list.insert(len(constraint_list), constraint)
         return constraint_list

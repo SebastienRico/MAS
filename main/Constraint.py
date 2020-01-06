@@ -1,5 +1,6 @@
 import null as null
 
+
 class Constraint:
 
     variable_id = null
@@ -7,7 +8,7 @@ class Constraint:
     constraint_type = null
     operator = null
     deviation = null
-    constraint_weight = null
+    constraint_weight = 0
 
     def __init__(self):
         """Empty constructor"""

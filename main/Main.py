@@ -37,7 +37,7 @@ def open_files_var():
 
 
 def create_XML_file():
-    ProblemXMLFileController.create_file(PROBLEM_FOLDER + "_scen" + SCENE_NUMBER, DOMAIN_LIST)
+    ProblemXMLFileController.create_file(PROBLEM_FOLDER + "_scen" + SCENE_NUMBER, DOMAIN_LIST, VARIABLE_LIST, CONSTRAINT_LIST)
 
 
 def main():
