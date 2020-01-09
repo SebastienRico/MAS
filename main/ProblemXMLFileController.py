@@ -24,7 +24,7 @@ class ProblemXMLFileController:
     def create_domains(instance, DOMAIN_LIST):
         domains = ET.SubElement(instance, "domains", nbDomains=str(len(DOMAIN_LIST)))
         for d in DOMAIN_LIST:
-            list = str(d.values_list).replace("[", "").replace("]", "").replace("'", "")
+            list = str(d.values_list).replace("[", "").replace("]", "").replace("',", "").replace("'", "")
             ET.SubElement(domains, "domain", name=str(d.domain_id), nbValues=str(len(d.values_list))).text = list
         return domains
 
@@ -37,21 +37,15 @@ class ProblemXMLFileController:
 
     @staticmethod
     def create_predicates(instance, CONSTRAINT_LIST):
-        predicates = ET.SubElement(instance, "predicates", nbPredicates=str(len(CONSTRAINT_LIST)))
+        predicates = ET.SubElement(instance, "predicates", nbPredicates=str(2))
         predicateEquivalent = ET.SubElement(predicates, "predicate", name="Equiv")
         predicateGreaterThan = ET.SubElement(predicates, "predicate", name="GreatThan")
-        for c in CONSTRAINT_LIST:
-            if "=" in c.operator:
-                ET.SubElement(predicateEquivalent, "parameters").text = str("int " + c.variable_id + " int " + c.second_variable_id)
-                expression = ET.SubElement(predicateEquivalent, "expression")
-                ET.SubElement(expression, "functional").text = \
-                    "if(eq(abs(sub(" + str(c.variable_id) + "," + str(c.second_variable_id) + "))," + str(c.deviation) + "),0," + str(c.constraint_weight) + ")"
-        for c in CONSTRAINT_LIST:
-            if ">" in c.operator:
-                ET.SubElement(predicateGreaterThan, "parameters").text = str("int " + c.variable_id + " int " + c.second_variable_id)
-                expression = ET.SubElement(predicateGreaterThan, "expression")
-                ET.SubElement(expression, "functional").text = \
-                    "if(gt(abs(sub(" + str(c.variable_id) + "," + str(c.second_variable_id) + "))," + str(c.deviation) + "),0," + str(c.constraint_weight) + ")"
+        ET.SubElement(predicateEquivalent, "parameters").text = "int X int Y int K"
+        expression = ET.SubElement(predicateEquivalent, "expression")
+        ET.SubElement(expression, "functional").text = "eq(abs(sub(X,Y)),K)"
+        ET.SubElement(predicateGreaterThan, "parameters").text = "int X int Y int K"
+        expression = ET.SubElement(predicateGreaterThan, "expression")
+        ET.SubElement(expression, "functional").text = "gt(abs(sub(X,Y)),K))"
         return predicates
 
     @staticmethod
@@ -63,13 +57,13 @@ class ProblemXMLFileController:
                               arity=str(2),
                               scope=str(c.variable_id + " " + c.second_variable_id),
                               reference="Equiv")
-                ET.SubElement(constraint, "parameters").text = str(c.variable_id + " " + c.second_variable_id)
+                ET.SubElement(constraint, "parameters").text = str(c.variable_id + " " + c.second_variable_id + " " + c.deviation)
             else:
                 constraint = ET.SubElement(constraints, "constraint", name=str(c.variable_id + "_greaterThan_" + c.second_variable_id),
                               arity=str(2),
                               scope=str(c.variable_id + " " + c.second_variable_id),
                               reference="GreatThan")
-                ET.SubElement(constraint, "parameters").text = str(c.variable_id + " " + c.second_variable_id)
+                ET.SubElement(constraint, "parameters").text = str(c.variable_id + " " + c.second_variable_id + " " + c.deviation)
         return constraints
 
     @staticmethod
